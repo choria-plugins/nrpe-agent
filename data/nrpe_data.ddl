@@ -1,9 +1,9 @@
 metadata  :name         => "nrpe",
           :description  => "Checks the exit codes of executed Nrpe commands",
-          :author       => "P Loubser",
-          :license      => "ASL 2.0",
-          :version      => "3.0.1",
-          :url          => "http://projects.puppetlabs.com/projects/mcollective-plugins/wiki",
+          :author      => "R.I.Pienaar <rip@devco.net>",
+          :license     => "Apache-2.0",
+          :version     => "3.1.0",
+          :url         => "https://github.com/choria-plugins/nrpe-agent",
           :timeout      => 4
 
 requires :mcollective => "2.2.1"

@@ -1,9 +1,9 @@
 metadata    :name        => "nrpe",
-            :description => "Agent to query NRPE commands via MCollective",
-            :author      => "R.I.Pienaar",
-            :license     => "ASL 2.0",
+            :description => "Agent to query NRPE commands via Choria",
+            :author      => "R.I.Pienaar <rip@devco.net>",
+            :license     => "Apache-2.0",
             :version     => "3.1.0",
-            :url         => "https://github.com/puppetlabs/mcollective-nrpe-agent",
+            :url         => "https://github.com/choria-plugins/nrpe-agent",
             :timeout     => 5
 
 requires :mcollective => "2.2.1"

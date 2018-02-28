@@ -1,4 +1,8 @@
-# MCollective NRPE Agent
+# Choria NRPE Agent
+
+This agent is capable of calling NRPE plugins on demand.
+
+## Background
 
 Often after just doing a change on servers you want to just be sure that they’re all going to pass a certain nagios check.
 
@@ -9,6 +13,7 @@ If you put your nagios checks on your servers using the common Nagios NRPE then 
 I wrote a blog post on using this plugin to aggregate checks for Nagios: [Aggregating Nagios Checks With MCollective](http://www.devco.net/archives/2010/07/03/aggregating_nagios_checks_with_mcollective.php)
 
 ## Setting up NRPE
+
 This agent makes an assumption or two about how you set up NRPE, in your nrpe.cfg add the following:
 
 ```
@@ -21,17 +26,45 @@ You should now set your commands up one file per check command, for example /etc
 command[check_load]=/usr/lib64/nagios/plugins/check_load -w 1.5,1.5,1.5 -c 2,2,2
 ```
 
-With this setup the agent will now be able to find your check_load command.
-I’ve added a Puppet define and template to help you create checks like this [on GitHub](http://github.com/puppetlabs/mcollective-plugins/tree/master/agent/nrpe/puppet/)
+With this setup the agent will now be able to find your `check_load` command.
+
+<!--- actions -->
 
 ## Agent Installation
-Follow the basic [plugin install guide](http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/InstalingPlugins)
 
-## Agent Configuration
-You can set the directory where the NRPE cfg files live using plugin.nrpe.conf_dir
+Add the agent and client:
+
+```yaml
+mcollective::plugin_classes:
+  - mcollective_agent_nrpe
+```
+
+## Configuration
+You can set the directory where the NRPE cfg files live, it defaults to `/etc/nagios/nrpe.d`:
+
+```yaml
+mcollective_agent_nrpe::config:
+ conf_dir: /usr/localetc/nagios/nrpe.d
+```
+
+Alternatively if you have just one file with many plugins defined you can configure its location as below, this is is mutually exclusive with the previous settings:
+
+```yaml
+mcollective_agent_nrpe::config:
+ conf_file: /usr/localetc/nagios/nrpe.cfg
+```
+
+And finally you can specify multiple directories as below:
+
+```yaml
+mcollective_agent_nrpe::config:
+ conf_path: /usr/localetc/nagios/nrpe.d:/other/nrpe.d
+```
 
 ## Usage
+
 ### Using generic mco rpc
+
 You can use the normal mco rpc script to run the agent:
 
 ```
@@ -134,10 +167,3 @@ dev2.example.com
 
 Finished processing 1 / 1 hosts in 138.15 ms
 ```
-
-## Maintenance
-
-Maintainers: Alessandro Parisi <alessandro@puppet.com>, Michael Smith
-<michael.smith@puppet.com>, Michal Ruzicka <michal.ruzicka@puppet.com>.
-
-Tickets: File bug tickets at https://tickets.puppet.com/browse/MCOP.
