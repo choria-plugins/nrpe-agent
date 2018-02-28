@@ -2,7 +2,7 @@ metadata  :name         => "nrpe",
           :description  => "Checks the exit codes of executed Nrpe commands",
           :author      => "R.I.Pienaar <rip@devco.net>",
           :license     => "Apache-2.0",
-          :version     => "3.1.0",
+          :version     => "4.0.0",
           :url         => "https://github.com/choria-plugins/nrpe-agent",
           :timeout      => 4
 
