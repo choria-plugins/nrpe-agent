@@ -114,11 +114,34 @@ describe "nrpe agent" do
   end
 
   describe "#run" do
+    let(:config){mock}
+    let(:pluginconf){{"nrpe.conf_dir" => "/foo", "nrpe.conf_file" => "bar.cfg", "nrpe.conf_path" => "/foo:/bar"}}
+
+    before :each do
+      config.stubs(:pluginconf).returns(pluginconf)
+      MCollective::Config.stubs(:instance).returns(config)
+    end
+
+    it "should run the command without sudo when no runas_user is specified" do
+      MCollective::Agent::Nrpe.expects(:plugin_for_command).with("foo", []).returns("foo")
+      MCollective::Agent::Nrpe.expects(:run_shell_cmd).with("foo").returns([0, "expected output"])
+      result = @agent.call(:runcommand, :command => "foo")
+      result.should be_successful
+    end
+
+    it "should run the command under the user specified in nrpe.cfg" do
+      pluginconf["nrpe.runas_user"] = "nrpe"
+      MCollective::Agent::Nrpe.expects(:plugin_for_command).with("foo", []).returns("foo")
+      MCollective::Agent::Nrpe.expects(:run_shell_cmd).with("sudo -u 'nrpe' foo").returns([0, "expected output"])
+      result = @agent.call(:runcommand, :command => "foo")
+      result.should be_successful
+    end
+
     it "should run the command found in #plugin_for_command and return output and exitcode" do
       shell = mock
       status = mock
 
-      MCollective::Agent::Nrpe.expects(:plugin_for_command).with("foo", []).returns({:cmd => "foo"})
+      MCollective::Agent::Nrpe.expects(:plugin_for_command).with("foo", []).returns("foo")
       MCollective::Shell.stubs(:new).returns(shell)
       shell.expects(:runcommand)
       shell.expects(:status).returns(status)

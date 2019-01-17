@@ -46,21 +46,33 @@ module MCollective
       # If the command does not exist run will return exitcode 3.
       #
       # The Nrpe configuration directory and file containing checks
-      # must be specified in server.cfg
+      # must be specified in server.cfg. In here, the user who should run
+      # the check can also be specified.
       #
       # Example :
       #          plugin.nrpe.conf_dir = /etc/nagios/nrpe
       #          plugin.nrpe.conf_file = checks.nrpe
+      #          plugin.nrpe.runas_user = nrpe
       def self.run(command, args=[])
         nrpe_command = Nrpe.plugin_for_command(command, args)
 
         return 3, "No such command: #{command}" unless nrpe_command
 
         output = ""
-        shell = ::MCollective::Shell.new(nrpe_command, {:stdout => output, :chomp => true})
+        config = Config.instance
+        runas_user = config.pluginconf["nrpe.runas_user"] || nil
+        nrpe_command = "sudo -u '%s' %s" % [runas_user, nrpe_command] if runas_user
+
+        run_shell_cmd(nrpe_command)
+      end
+
+      def self.run_shell_cmd(command)
+        output = ""
+
+        shell = ::MCollective::Shell.new(command, {:stdout => output, :chomp => true})
         shell.runcommand
-        exitcode = shell.status.exitstatus
-        return exitcode, output
+
+        [shell.status.exitstatus, output]
       end
 
       def self.plugin_for_command(command, args)
