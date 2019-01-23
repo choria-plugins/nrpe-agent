@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_nrpe`
 
+## 4.1.0
+
+Released 2019-01-23
+
+ * Allow NRPE commands to be run as a specific user
+
 ## 4.0.1
 
 Released 2018-04-20
