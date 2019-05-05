@@ -44,21 +44,21 @@ You can set the directory where the NRPE cfg files live, it defaults to `/etc/na
 
 ```yaml
 mcollective_agent_nrpe::config:
- conf_dir: /usr/localetc/nagios/nrpe.d
+ conf_dir: /usr/local/etc/nagios/nrpe.d
 ```
 
 Alternatively if you have just one file with many plugins defined you can configure its location as below, this is is mutually exclusive with the previous settings:
 
 ```yaml
 mcollective_agent_nrpe::config:
- conf_file: /usr/localetc/nagios/nrpe.cfg
+ conf_file: /usr/local/etc/nagios/nrpe.cfg
 ```
 
 And finally you can specify multiple directories as below:
 
 ```yaml
 mcollective_agent_nrpe::config:
- conf_path: /usr/localetc/nagios/nrpe.d:/other/nrpe.d
+ conf_path: /usr/local/etc/nagios/nrpe.d:/other/nrpe.d
 ```
 
 ## Usage
