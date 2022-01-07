@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_nrpe`
 
+## 4.2.0
+
+Released 2022-01-07
+
+ * Increase nrpe check timeout to 30 seconds
+
 ## 4.1.0
 
 Released 2019-01-23
