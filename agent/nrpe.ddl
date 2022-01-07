@@ -4,7 +4,7 @@ metadata    :name        => "nrpe",
             :license     => "Apache-2.0",
             :version     => "4.0.1",
             :url         => "https://github.com/choria-plugins/nrpe-agent",
-            :timeout     => 5
+            :timeout     => 30
 
 requires :mcollective => "2.2.1"
 
