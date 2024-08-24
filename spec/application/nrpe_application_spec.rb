@@ -19,9 +19,9 @@ module MCollective
 
       describe '#validate_configuration' do
         it 'should fail if a check name has not been specified' do
-          expect{
-            @app.validate_configuration
-          }.to raise_error
+          lambda {
+            @app.validate_configuration({})
+          }.should raise_error(RuntimeError, 'Please specify a check name')
         end
       end
 
