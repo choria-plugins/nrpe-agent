@@ -4,7 +4,6 @@ require 'rubygems'
 require 'rspec'
 require 'mcollective'
 require 'mcollective/test'
-require 'rspec/mocks'
 require 'mocha'
 require 'tempfile'
 
