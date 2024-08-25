@@ -81,3 +81,11 @@ desc "Builds the module found in the current directory, run build_prep first"
 task :build do
   sh "/opt/puppetlabs/puppet/bin/mco plugin package --format aiomodulepackage --vendor choria"
 end
+
+# load optional tasks for releases
+# only available if gem group releases is installed
+begin
+  require "voxpupuli/release/rake_tasks"
+rescue LoadError
+  # voxpupuli-release not present
+end
