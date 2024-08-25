@@ -8,6 +8,9 @@ module MCollective
   module Data
     describe "#query_data" do
       before do
+        data_file = File.join(File.dirname(__FILE__), '../../', 'data', 'nrpe_data.rb')
+        MCollective::Test::DataTest.new('nrpe_data', :data_file => data_file)
+
         @ddl = mock('ddl')
         @ddl.stubs(:dataquery_interface).returns({:output => {}})
         @ddl.stubs(:meta).returns({:timeout => 1})
