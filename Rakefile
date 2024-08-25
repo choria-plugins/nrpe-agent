@@ -1,28 +1,32 @@
+# Managed by modulesync - DO NOT EDIT
+# https://voxpupuli.org/docs/updating-files-managed-with-modulesync/
+
 specdir = File.join([File.dirname(__FILE__), "spec"])
 
-require 'rake'
+require "rake"
 begin
-  require 'rspec/core/rake_task'
-  require 'mcollective'
-rescue LoadError
+  require "rspec/core/rake_task"
+  require "mcollective"
+rescue LoadError # rubocop:disable Lint/SuppressedException
 end
+
 
 desc "Run agent and application tests"
 task :test do
   require "#{specdir}/spec_helper.rb"
   if ENV["TARGETDIR"]
-    test_pattern = "#{File.expand_path(ENV["TARGETDIR"])}/spec/**/*_spec.rb"
+    test_pattern = "#{File.expand_path(ENV['TARGETDIR'])}/spec/**/*_spec.rb"
   else
-    test_pattern = 'spec/**/*_spec.rb'
+    test_pattern = "spec/**/*_spec.rb"
   end
   sh "bundle exec rspec #{Dir.glob(test_pattern).sort.join(' ')}"
 end
 
-task :default => :test
+task :default => [:test]
 
 desc "Expands the action details section in a README.md file"
 task :readme_expand do
-  ddl_file = Dir.glob(File.join("agent/*.ddl")).first
+  ddl_file = Dir.glob("agent/*.ddl").first
 
   return unless ddl_file
 
@@ -30,7 +34,7 @@ task :readme_expand do
   ddl.instance_eval(File.read(ddl_file))
 
   lines = File.readlines("puppet/README.md").map do |line|
-    if line =~ /^<\!--- actions -->/
+    if line.match?(/^<!--- actions -->/)
       [
         "## Actions\n\n",
         "This agent provides the following actions, for details about each please run `mco plugin doc agent/%s`\n\n" % ddl.meta[:name]

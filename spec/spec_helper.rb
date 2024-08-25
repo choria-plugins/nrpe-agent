@@ -1,11 +1,12 @@
-$: << File.join([File.dirname(__FILE__), "lib"])
+# Managed by modulesync - DO NOT EDIT
+# https://voxpupuli.org/docs/updating-files-managed-with-modulesync/
 
-require 'rubygems'
-require 'rspec'
-require 'mcollective'
-require 'mcollective/test'
-require 'mocha'
-require 'tempfile'
+require "rubygems"
+require "rspec"
+require "mcollective"
+require "mcollective/test"
+require "mocha"
+require "tempfile"
 
 RSpec.configure do |config|
   config.mock_with :mocha
@@ -17,3 +18,5 @@ RSpec.configure do |config|
     MCollective::PluginManager.clear
   end
 end
+
+Dir["./spec/support/spec/**/*.rb"].sort.each { |f| require f }
