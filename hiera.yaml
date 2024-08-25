@@ -1,0 +1,14 @@
+---
+version: 5
+
+defaults:
+  datadir: "data"
+  data_hash: yaml_data
+
+hierarchy:
+  - name: "plugin"
+    path: "plugin.yaml"
+  - name: "os-specific"
+    path: "os/%{facts.os.family}.yaml"
+  - name: "defaults"
+    path: "defaults.yaml"
