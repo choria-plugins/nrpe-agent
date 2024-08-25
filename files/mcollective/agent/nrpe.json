@@ -1,0 +1,83 @@
+{
+  "$schema": "https://choria.io/schemas/mcorpc/ddl/v1/agent.json",
+  "metadata": {
+    "name": "nrpe",
+    "description": "Agent to query NRPE commands via Choria",
+    "author": "R.I.Pienaar <rip@devco.net>",
+    "license": "Apache-2.0",
+    "version": "4.2.0",
+    "url": "https://github.com/choria-plugins/nrpe-agent",
+    "timeout": 30
+  },
+  "actions": [
+    {
+      "action": "runallcommands",
+      "input": {
+      },
+      "output": {
+        "commands": {
+          "description": "Output status of all defined commands",
+          "display_as": "Commands",
+          "default": null
+        }
+      },
+      "display": "failed",
+      "description": "Run all defined NRPE commands"
+    },
+    {
+      "action": "runcommand",
+      "input": {
+        "command": {
+          "prompt": "Command",
+          "description": "NRPE command to run",
+          "type": "string",
+          "default": null,
+          "optional": false,
+          "validation": "\\A[a-zA-Z0-9_-]+\\z",
+          "maxlength": 50
+        },
+        "args": {
+          "prompt": "Arguments",
+          "description": "NRPE Command arguments",
+          "type": "string",
+          "default": null,
+          "optional": true,
+          "validation": ".*",
+          "maxlength": 50
+        }
+      },
+      "output": {
+        "output": {
+          "description": "Output from the Nagios plugin",
+          "display_as": "Output",
+          "default": ""
+        },
+        "exitcode": {
+          "description": "Exit Code from the Nagios plugin",
+          "display_as": "Exit Code",
+          "default": 3
+        },
+        "perfdata": {
+          "description": "Performance Data from the Nagios plugin",
+          "display_as": "Performance Data",
+          "default": ""
+        },
+        "command": {
+          "description": "Command that was run",
+          "display_as": "Command",
+          "default": ""
+        }
+      },
+      "display": "failed",
+      "description": "Run a NRPE command",
+      "aggregate": [
+        {
+          "function": "nagios_states",
+          "args": [
+            "exitcode"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 #!/usr/bin/env rspec
 
 require 'spec_helper'
-require File.join(File.dirname(__FILE__), '../../', 'application', 'nrpe.rb')
+require File.join(File.dirname(__FILE__), '../../',  'files', 'mcollective', 'application', 'nrpe.rb')
 
 module MCollective
   class Application
     describe Nrpe do
       before do
-        application_file = File.join(File.dirname(__FILE__), '../../', 'application', 'nrpe.rb')
+        application_file = File.join(File.dirname(__FILE__), '../../',  'files', 'mcollective', 'application', 'nrpe.rb')
         @app = MCollective::Test::ApplicationTest.new('nrpe', :application_file => application_file).plugin
       end
 

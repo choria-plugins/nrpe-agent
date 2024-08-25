@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require 'spec_helper'
-require File.join(File.dirname(__FILE__), "../../", "aggregate", "nagios_states")
+require File.join(File.dirname(__FILE__), "../../",  "files", "mcollective", "aggregate", "nagios_states")
 
 module MCollective
   class Aggregate
