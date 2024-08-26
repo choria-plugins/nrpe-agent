@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_nrpe`
 
+## 4.3.0
+
+Released 2024-08-26
+
+ * Support latest ruby and use new module layout
+
 ## 4.2.0
 
 Released 2022-01-07
