@@ -1,14 +1,14 @@
 #!/usr/bin/env rspec
 
 require 'spec_helper'
-require File.join(File.dirname(__FILE__), "../../", "data", "nrpe_data")
-require File.join(File.dirname(__FILE__), "../../", "agent", "nrpe")
+require File.join(File.dirname(__FILE__), "../../",  "files", "mcollective", "data", "nrpe_data")
+require File.join(File.dirname(__FILE__), "../../",  "files", "mcollective", "agent", "nrpe")
 
 module MCollective
   module Data
     describe "#query_data" do
       before do
-        data_file = File.join(File.dirname(__FILE__), '../../', 'data', 'nrpe_data.rb')
+        data_file = File.join(File.dirname(__FILE__), '../../',  'files', 'mcollective', 'data', 'nrpe_data.rb')
         MCollective::Test::DataTest.new('nrpe_data', :data_file => data_file)
 
         @ddl = mock('ddl')

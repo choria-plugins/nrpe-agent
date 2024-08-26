@@ -1,17 +1,23 @@
-#!ruby
-source 'https://rubygems.org'
+# Managed by modulesync - DO NOT EDIT
+# https://voxpupuli.org/docs/updating-files-managed-with-modulesync/
+
+source "https://rubygems.org"
 
 group :test do
-  gem 'rake', '>= 12.3.3'
-  gem 'rspec'
-  gem 'mocha'
-  gem 'mcollective-test'
+  gem "mcollective-test", :require => false
+  gem "mocha",            :require => false
+  gem "rake",             :require => false
+  gem "rspec",            :require => false
 end
 
-mcollective_version = ENV['MCOLLECTIVE_GEM_VERSION']
+group :release do
+  gem "voxpupuli-release", "~> 3.0", :require => false
+end
+
+mcollective_version = ENV["MCOLLECTIVE_GEM_VERSION"]
 
 if mcollective_version
-  gem 'mcollective-client', mcollective_version, :require => false
+  gem "mcollective-client", mcollective_version, :require => false
 else
-  gem 'mcollective-client', :require => false
+  gem "mcollective-client", :require => false
 end

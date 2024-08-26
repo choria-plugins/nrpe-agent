@@ -28,7 +28,12 @@ command[check_load]=/usr/lib64/nagios/plugins/check_load -w 1.5,1.5,1.5 -c 2,2,2
 
 With this setup the agent will now be able to find your `check_load` command.
 
-<!--- actions -->
+## Actions
+
+This agent provides the following actions, for details about each please run `mco plugin doc agent/nrpe`
+
+ * **runallcommands** - Run all defined NRPE commands
+ * **runcommand** - Run a NRPE command
 
 ## Agent Installation
 

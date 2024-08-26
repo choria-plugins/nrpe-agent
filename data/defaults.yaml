@@ -1,0 +1,16 @@
+lookup_options:
+  mcollective_agent_nrpe::gem_dependencies:
+    merge:
+      strategy: deep
+  mcollective_agent_nrpe::package_dependencies:
+    merge:
+      strategy: deep
+  mcollective_agent_nrpe::config:
+    merge:
+      strategy: deep
+  mcollective_agent_nrpe::client_config:
+    merge:
+      strategy: deep
+  mcollective_agent_nrpe::server_config:
+    merge:
+      strategy: deep

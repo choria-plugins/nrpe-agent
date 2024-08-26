@@ -1,0 +1,16 @@
+---
+mcollective_agent_nrpe::config_name: nrpe
+mcollective_agent_nrpe::common_files:
+- data/nrpe_data.rb
+- data/nrpe_data.ddl
+- agent/nrpe.ddl
+- agent/nrpe.json
+mcollective_agent_nrpe::executable_files: []
+mcollective_agent_nrpe::common_directories: []
+mcollective_agent_nrpe::server_files:
+- agent/nrpe.rb
+mcollective_agent_nrpe::server_directories: []
+mcollective_agent_nrpe::client_files:
+- application/nrpe.rb
+- aggregate/nagios_states.rb
+mcollective_agent_nrpe::client_directories: []
