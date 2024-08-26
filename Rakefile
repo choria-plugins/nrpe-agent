@@ -29,11 +29,11 @@ task :prep_version do
   abort("Please specify VERSION") unless ENV["VERSION"]
 
   Rake::FileList["**/*.ddl"].each do |file|
-    sh 'sed -i "" -re \'s/([\t ]+:version[\t ]+=>[\t ]+").+/\\1%s",/\' %s' % [ENV["VERSION"], file]
+    sh 'sed -i"" -re \'s/([\t ]+:version[\t ]+=>[\t ]+").+/\\1%s",/\' %s' % [ENV["VERSION"], file]
   end
 
   Rake::FileList["**/*.json"].each do |file|
-    sh 'sed -i "" -re \'s/("version": ").+/\\1%s",/\' %s' % [ENV["VERSION"], file]
+    sh 'sed -i"" -re \'s/("version": ").+/\\1%s",/\' %s' % [ENV["VERSION"], file]
   end
 
   changelog = File.read("CHANGELOG.md")

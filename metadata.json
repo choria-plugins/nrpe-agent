@@ -1,6 +1,6 @@
 {
   "name": "choria-mcollective_agent_nrpe",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Agent to query NRPE commands via Choria",
