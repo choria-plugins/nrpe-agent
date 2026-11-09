@@ -11,13 +11,13 @@ group :test do
 end
 
 group :release do
-  gem "voxpupuli-release", "~> 3.0", :require => false
+  gem "voxpupuli-release", "~> 5.0", :require => false
 end
 
 mcollective_version = ENV["MCOLLECTIVE_GEM_VERSION"]
 
 if mcollective_version
-  gem "mcollective-client", mcollective_version, :require => false
+  gem "choria-mcorpc-support", mcollective_version, :require => false
 else
-  gem "mcollective-client", :require => false
+  gem "choria-mcorpc-support", :require => false
 end
